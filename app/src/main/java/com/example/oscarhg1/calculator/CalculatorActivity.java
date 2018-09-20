@@ -39,9 +39,9 @@ public class CalculatorActivity extends AppCompatActivity
 
     private String num = "";
     private String num0 = "";
+    private String textNum = "";
     private TextView numView;
     private TextView numView0;
-
 
 
     @Override
@@ -61,34 +61,75 @@ public class CalculatorActivity extends AppCompatActivity
         numView.setText(num);
     }
 
-    public void onClickOper(View view)
-    {
-        if (!num.isEmpty())
+    public void onClickOper(View view) {
+        if (operationType == operation.None)
         {
-            num0 = num;
-            num = "";
+            if (!num.isEmpty())
+            {
+                num0 = num;
+                num = "";
 
-            numView0.setText(num0);
-            numView.setText(num);
+                numView.setText(num);
 
-            Button b = (Button) view;
+                Button b = (Button) view;
 
-            operationType = operation.fromInteger(Integer.parseInt(b.getTag().toString()));
+                operationType = operation.fromInteger(Integer.parseInt(b.getTag().toString()));
+                switch (operationType)
+                {
+                    case Add:
+                        textNum = num0 + " + ";
+                        break;
+                    case Sub:
+                        textNum = num0 + " - ";
+                        break;
+                    case Mult:
+                        textNum = num0 + " x ";
+                        break;
+                    case Div:
+                        textNum = num0 + " ÷ ";
+                        break;
+                }
+
+                numView0.setText(textNum);
+
+            }
         }
+        else
+        {
+                OnClickEquals(view);
+        }
+
     }
 
     public void OnClickEquals(View view)
     {
         if (!num0.isEmpty() && !num.isEmpty())
         {
-            int number0 = Integer.parseInt(num0);
-            int number1 = Integer.parseInt(num);
+            double number0 = Double.parseDouble(num0);
+            double number1 = Double.parseDouble(num);
 
-            num0 += (" + " + num);
+            textNum += num;
 
-            num = Integer.toString(number0 + number1);
+            double result = 0;
 
-            numView0.setText(num0);
+            switch (operationType)
+            {
+                case Add:
+                    result = number0 + number1;
+                    break;
+                case Sub:
+                    result = number0 - number1;
+                    break;
+                case Mult:
+                    result = number0 * number1;
+                    break;
+                case Div:
+                    result = number0 / number1;
+                    break;
+            }
+            num = Double.toString(result);
+
+            numView0.setText(textNum);
             numView.setText(num);
         }
     }
