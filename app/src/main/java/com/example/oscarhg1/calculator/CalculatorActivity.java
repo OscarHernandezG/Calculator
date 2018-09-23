@@ -62,43 +62,34 @@ public class CalculatorActivity extends AppCompatActivity
     }
 
     public void onClickOper(View view) {
-        if (operationType == operation.None)
-        {
-            if (!num.isEmpty())
-            {
-                num0 = num;
-                num = "";
 
-                numView.setText(num);
+        if (!num.isEmpty()) {
+            num0 = num;
+            num = "";
 
-                Button b = (Button) view;
+            numView.setText(num);
 
-                operationType = operation.fromInteger(Integer.parseInt(b.getTag().toString()));
-                switch (operationType)
-                {
-                    case Add:
-                        textNum = num0 + " + ";
-                        break;
-                    case Sub:
-                        textNum = num0 + " - ";
-                        break;
-                    case Mult:
-                        textNum = num0 + " x ";
-                        break;
-                    case Div:
-                        textNum = num0 + " ÷ ";
-                        break;
-                }
+            Button b = (Button) view;
 
-                numView0.setText(textNum);
-
+            operationType = operation.fromInteger(Integer.parseInt(b.getTag().toString()));
+            switch (operationType) {
+                case Add:
+                    textNum = num0 + " + ";
+                    break;
+                case Sub:
+                    textNum = num0 + " - ";
+                    break;
+                case Mult:
+                    textNum = num0 + " x ";
+                    break;
+                case Div:
+                    textNum = num0 + " ÷ ";
+                    break;
             }
-        }
-        else
-        {
-                OnClickEquals(view);
-        }
 
+            numView0.setText(textNum);
+
+        }
     }
 
     public void OnClickEquals(View view)
@@ -132,6 +123,13 @@ public class CalculatorActivity extends AppCompatActivity
             numView0.setText(textNum);
             numView.setText(num);
         }
+    }
+
+    public void OnClickPeriod(View view)
+    {
+        num +=".";
+
+        numView.setText(num);
     }
 
 }
