@@ -43,9 +43,13 @@ public class CalculatorActivity extends AppCompatActivity
     private TextView numView;
     private TextView numView0;
 
+    private Boolean isPeriodActive = false;
+    private Boolean isNewOperation = true;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
@@ -55,6 +59,12 @@ public class CalculatorActivity extends AppCompatActivity
 
     public void onClickDigit(View view)
     {
+        if (isNewOperation)
+        {
+            CleanCalculator();
+            isNewOperation = false;
+        }
+
         Button b = (Button)view;
         num += b.getText().toString().charAt(0);
 
@@ -89,6 +99,8 @@ public class CalculatorActivity extends AppCompatActivity
 
             numView0.setText(textNum);
 
+            isPeriodActive = false;
+            isNewOperation = false;
         }
     }
 
@@ -122,14 +134,38 @@ public class CalculatorActivity extends AppCompatActivity
 
             numView0.setText(textNum);
             numView.setText(num);
+
+            isPeriodActive = false;
+            isNewOperation = true;
         }
     }
 
     public void OnClickPeriod(View view)
     {
-        num +=".";
+        if (!isPeriodActive)
+        {
+            num += ".";
 
-        numView.setText(num);
+            numView.setText(num);
+
+            isPeriodActive = true;
+        }
     }
 
+    public void OnClickReset(View view)
+    {
+        CleanCalculator();
+    }
+
+
+    public void CleanCalculator()
+    {
+        num = "";
+        num0 = "";
+        textNum = "";
+        isPeriodActive = false;
+
+        numView0.setText(textNum);
+        numView.setText(num);
+    }
 }

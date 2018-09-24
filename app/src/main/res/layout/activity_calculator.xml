@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/curr_num"
-        android:layout_width="349dp"
+        android:layout_width="302dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="8dp"
@@ -186,16 +186,28 @@
 
     <TextView
         android:id="@+id/first_num"
-        android:layout_width="wrap_content"
+        android:layout_width="356dp"
         android:layout_height="64dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:textSize="55sp"
+        android:gravity="top|right"
         app:layout_constraintBottom_toTopOf="@+id/curr_num"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:onClick="OnClickReset"
+        android:text="Reset"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
